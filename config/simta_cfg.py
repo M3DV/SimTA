@@ -31,5 +31,5 @@ lr_scheduler = optim.lr_scheduler.OneCycleLR
 lr_scheduler_params = {
     "max_lr": max_lr
 }
-epochs = 50
+epochs = 100
 metrics = [MeanSquaredError()]

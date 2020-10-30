@@ -1,3 +1,4 @@
+import importlib
 import os
 
 import numpy as np
@@ -5,7 +6,7 @@ import torch
 from matplotlib import font_manager as fm
 from matplotlib import pyplot as plt
 
-from data.toy_dataset import ToyDataset
+from dataset.toy_dataset import ToyDataset
 from engine.simta_engine import SimTAEngine
 from models.simta import SimTANet
 from toy_data.toy_data import ToyData
