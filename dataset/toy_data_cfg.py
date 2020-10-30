@@ -1,3 +1,6 @@
+import os
+
+
 # generating function config
 w_min, w_max = -10, 10
 b_min, b_max = -10, 10
@@ -14,4 +17,4 @@ num_test_pt = 3
 val_pct = 0.2
 
 # save path
-save_path = "/mnt/sdb/data/simta/toy_data"
+save_path = os.path.join(os.path.dirname(__file__), "data_pickle")

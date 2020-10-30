@@ -31,8 +31,5 @@ lr_scheduler = optim.lr_scheduler.OneCycleLR
 lr_scheduler_params = {
     "max_lr": max_lr
 }
-epochs = 200
+epochs = 50
 metrics = [MeanSquaredError()]
-
-# save model path
-save_model_path = "trained_models/simta/model.pt"

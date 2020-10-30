@@ -1,10 +1,44 @@
 import os
 import pickle
+from math import pi
 
 import numpy as np
 from sklearn.model_selection import train_test_split
 
-from toy_data.toy_data import ToyData
+
+class ToyData:
+
+    def __init__(self, w, b, alpha, beta, eps=1):
+        self.w = w
+        self.b = b
+        self.alpha = alpha
+        self.beta = beta
+        assert len(self.w) == len(self.b) == len(self.alpha) == len(self.beta)
+        self.eps = eps
+
+    def _compute_output(self, x):
+        y = np.sum([self.alpha[i] * np.sin(self.w[i] * x * pi + self.b[i])
+            + self.beta[i] for i in range(len(self.w))])
+
+        return y
+
+    def _compute_noisy_output(self, x):
+        y = self._compute_output(x)
+        noise = np.random.normal() * self.eps
+
+        return y + noise
+
+    def generate_denoised_series(self, x_series):
+        y_series = np.array([self._compute_output(x_series[i])
+            for i in range(len(x_series))])
+
+        return y_series
+
+    def sample(self, x_series):
+        y_series = np.array([self._compute_noisy_output(x_series[i])
+            for i in range(len(x_series))])
+
+        return y_series
 
 
 def _generate_rnd_sin_param(cfg):
@@ -39,7 +73,7 @@ def generate_toy_data(cfg):
         y_true[i, :] = toy_data.generate_denoised_series(
             np.linspace(t_series[-1] + 1, t_series[-1] + cfg.num_test_pt,
             cfg.num_test_pt))
-    
+
     idx_train, idx_val = train_test_split(np.arange(cfg.num_total_samples),
         test_size=cfg.val_pct)
 
@@ -55,6 +89,7 @@ def generate_toy_data(cfg):
 
 
 if __name__ == "__main__":
-    import toy_data.toy_data_cfg as cfg
+    from . import toy_data_cfg as cfg
+
 
     generate_toy_data(cfg)

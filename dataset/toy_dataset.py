@@ -1,16 +1,13 @@
 import os
 import pickle
 
-import numpy as np
 import torch
 from torch.utils.data import DataLoader, Dataset
-
-from environ import ENVIRON_PATH
 
 
 class ToyDataset(Dataset):
 
-    data_dir = ENVIRON_PATH.data_dir
+    data_dir = os.path.join(os.path.dirname(__file__), "data_pickle")
     params_file = "params.pickle"
     t_file = "t.pickle"
     x_file = "x.pickle"
@@ -31,7 +28,7 @@ class ToyDataset(Dataset):
             self.y_file), "rb"))
         self.y_true = pickle.load(open(os.path.join(self.data_dir,
             self.y_true_file), "rb"))
-        
+
         if self.subset == "train":
             idx_train = pickle.load(open(os.path.join(self.data_dir,
                 self.idx_train_file), "rb"))
@@ -49,13 +46,13 @@ class ToyDataset(Dataset):
 
     def __len__(self):
         return len(self.x)
-    
+
     def __getitem__(self, idx):
         return torch.tensor(self.t[idx], dtype=torch.float),\
             torch.tensor(self.x[idx], dtype=torch.float),\
             torch.tensor(self.y[idx], dtype=torch.float),\
             torch.tensor(self.y_true[idx], dtype=torch.float)
-    
+
     @staticmethod
     def get_dataloader(dataset, batch_size):
         return DataLoader(dataset, batch_size)

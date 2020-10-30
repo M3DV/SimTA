@@ -1,24 +1,19 @@
-import math
 import os
 import shutil
 from datetime import datetime
 
 import numpy as np
 import torch
-import torch.nn.functional as F
 from torch.utils.tensorboard import SummaryWriter
 from tqdm import tqdm
-
-from environ import ENVIRON_PATH
-from utils.cuda import put_var_on_gpu
 
 
 class BaseEngine(object):
 
-    def __init__(self, cfg):
+    def __init__(self, cfg, log_dir):
         self.cfg = cfg
         start_time = datetime.now().strftime("%Y%m%d-%H%M%S")
-        self.log_path = os.path.join(ENVIRON_PATH.train_dir, start_time)
+        self.log_path = os.path.join(log_dir, start_time)
         self.cfg_path = os.path.join(self.log_path, "config")
         self.history = {"train": {}, "val": {}}
 

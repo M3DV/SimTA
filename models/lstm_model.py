@@ -14,7 +14,9 @@ class LSTMModel(nn.Module):
         if self.use_tau:
             d_in += 1
         self.lstm = nn.LSTM(d_in, d_hidden, num_layers, batch_first=True)
-        self.regressor = nn.Linear(d_hidden * 3, d_out)
+        if self.use_tau:
+            d_hidden *= 3
+        self.regressor = nn.Linear(d_hidden, d_out)
 
     @staticmethod
     def _gen_time_stamp(tau):
@@ -33,6 +35,7 @@ class LSTMModel(nn.Module):
         if len(x.size()) == 2:
             x = torch.unsqueeze(x, dim=-1)
         x, _ = self.lstm(x)
+        x = x.mean(dim=1)
         output = self.regressor(x)
 
         return output

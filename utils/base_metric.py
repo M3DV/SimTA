@@ -1,17 +1,13 @@
 import os
 
 import numpy as np
-import torch
-import torch.nn.functional as F
-from scipy.special import softmax
-from sklearn.metrics import roc_auc_score
 
 
 def write_metrics_to_txt(metrics, path):
-	with open(os.path.join(path, "metrics.txt"), "w") as f:
-		for k, v in metrics.items():
-			print("{}: {:.4f}".format(k, v))
-			f.writelines("{}: {:.4f}\n".format(k, v))
+    with open(os.path.join(path, "metrics.txt"), "w") as f:
+        for k, v in metrics.items():
+            print("{}: {:.4f}".format(k, v))
+            f.writelines("{}: {:.4f}\n".format(k, v))
 
 
 class BaseMetric(object):
