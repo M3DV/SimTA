@@ -32,7 +32,8 @@ def main(args):
 
     engine.train(dataloader_train, cfg.epochs, dataloader_val, scheduler)
 
-    torch.save(model, os.path.join(engine.log_path, "model.pth"))
+    torch.save(model.state_dict(),
+        os.path.join(engine.log_path, "model_weights.pth"))
     pickle_history(engine.history, engine.log_path)
 
 

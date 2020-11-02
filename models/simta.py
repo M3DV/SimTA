@@ -92,10 +92,3 @@ class SimTANet(nn.Module):
         y = self.regressor(x)
 
         return y
-
-
-if __name__ == "__main__":
-    t = torch.tensor([0, 1, 2, 3]).view(1, -1)
-    attn = SimTALayer._get_attn_matrix(t)
-    SimTALayer._apply_ninf_mask(attn)
-    print(attn.numpy())

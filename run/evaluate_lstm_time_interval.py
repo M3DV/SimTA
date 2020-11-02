@@ -7,7 +7,6 @@ from dataset.toy_dataset import ToyDataset
 from engine.lstm_engine import LSTMEngine
 from models.lstm_model import LSTMModel
 from utils.cuda import put_model_on_gpu
-from utils.record import pickle_history
 
 
 def main(args):
@@ -15,26 +14,22 @@ def main(args):
     log_dir = args.logdir
     engine = LSTMEngine(cfg, log_dir)
 
-    dataset_train = ToyDataset(subset="train")
-    dataloader_train = ToyDataset.get_dataloader(dataset_train,
-        cfg.batch_size)
     dataset_val = ToyDataset(subset="val")
     dataloader_val = ToyDataset.get_dataloader(dataset_val, cfg.batch_size)
 
-    model = put_model_on_gpu(LSTMModel(**cfg.lstm_cfg), cfg.devices)
+    model = LSTMModel(**cfg.lstm_cfg)
+    model_weights_path = args.modelpath
+    if model_weights_path != "":
+        model_weights = torch.load(open(model_weights_path, "rb"))
+        model.load_state_dict(model_weights)
+    model = put_model_on_gpu(model, cfg.devices)
 
     loss_fn = cfg.loss_fn()
     optimizer = cfg.optimizer(model.parameters(), **cfg.optim_params)
     engine.compile(model, optimizer, loss_fn, cfg.metrics)
-    scheduler = cfg.lr_scheduler(engine.optimizer,
-        total_steps=cfg.epochs * len(dataloader_train),
-        **cfg.lr_scheduler_params)
 
-    engine.train(dataloader_train, cfg.epochs, dataloader_val, scheduler)
-
-    torch.save(model.state_dict(),
-        os.path.join(engine.log_path, "model_weights.pth"))
-    pickle_history(engine.history, engine.log_path)
+    _, metrics = engine.evaluate(dataloader_val)
+    print(metrics)
 
 
 if __name__ == "__main__":
@@ -42,11 +37,15 @@ if __name__ == "__main__":
 
     parser = argparse.ArgumentParser()
     parser.add_argument("--config", type=str,
-        default="config.lstm_time_stamp_cfg",
+        default="config.lstm_time_interval_cfg",
         help="The configuration file to use.")
     parser.add_argument("--logdir", type=str,
-        required=True,
+        default="",
         help="The directory to save tensorboard logs and model.")
+    parser.add_argument("--modelpath", type=str,
+        default="",
+        help="The trained PyTorch model weights path.")
+    args = parser.parse_args()
     args = parser.parse_args()
 
     main(args)

@@ -8,7 +8,7 @@ from torch.utils.tensorboard import SummaryWriter
 from tqdm import tqdm
 
 
-class BaseEngine(object):
+class BaseEngine:
 
     def __init__(self, cfg, log_dir):
         self.cfg = cfg
