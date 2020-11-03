@@ -7,7 +7,7 @@ We propose Simple Temporal Attention (SimTA) module to process the asynchronous 
 For more details, please refer to our paper: [MIA-Prognosis: A Deep Learning Framework to Predict Therapy Response](https://arxiv.org/pdf/2010.04062.pdf).
 
 ## Code Structure
-* [`SimTA/`](./)
+* SimTA/
     * [`config/`](config/): Training configurations
     * [`dataset/`](dataset/): Toy data generator, PyTorch dataset and toy data pickles used in experiments.
     * [`engine/`](engine/): Keras-like training and evaluation API
