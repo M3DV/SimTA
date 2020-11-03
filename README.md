@@ -58,5 +58,7 @@ python -m dataset.generate_toy_data
 ```
 You may find the configuration of toy data in [/dataset/toy_data_cfg.py](/dataset/toy_data_cfg.py) and play with it a little. For concrete details of the toy data settings, please refer to our paper.
 
-# TODO
-- Tensorboard screenshot;
+## Experiments
+Here is a screenshot of the experiment tensorboard logs of SimTA and three LSTM-based approaches used in our paper:
+![tensorboard log](/etc/training_tensorboard.png)
+On the toy dataset, SimTA has a much better performance compared with LSTM-based approaches in terms of mean squared error in the regression task.
