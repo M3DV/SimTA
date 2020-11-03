@@ -1,5 +1,4 @@
 import importlib
-import os
 
 import torch
 
@@ -7,7 +6,6 @@ from dataset.toy_dataset import ToyDataset
 from engine.lstm_engine import LSTMEngine
 from models.lstm_model import LSTMModel
 from utils.cuda import put_model_on_gpu
-from utils.record import pickle_history
 
 
 def main(args):
