@@ -1,10 +1,17 @@
 # **Sim**ple **T**emporal **A**ttention (SimTA)
 
-We propose Simple Temporal Attention (SimTA) module to process the asynchronous time series. Experiments on synthetic dataset validate the superiory of SimTA over standard RNN-based approaches. Furthermore, we experiment the proposed method on an in-house, retrospective dataset of real-world non-small cell lung cancer patients under anti-PD-1 immunotherapy. The proposed method achieves promising performance on predicting the immunotherapy response. Notably, our predictive model could further stratify low-risk and high-risk patients in terms of long-term survival.
+Simple Temporal Attention (SimTA) module is an **attention module** to process the **asynchronous time series**. 
+
+## Abstract
+Predicting clinical outcome is remarkably important but challenging. Research efforts have been paid on seeking significant biomarkers associated with the therapy response or/and patient survival. However, these biomarkers are generally costly and invasive, and possibly dissatifactory for novel therapy. On the other hand, multi-modal, heterogeneous, unaligned temporal data is continuously generated in clinical practice. This paper aims at a unified deep learning approach to predict patient prognosis and therapy response, with easily accessible data, e.g., radiographics, laboratory and clinical information. Prior arts focus on modeling single data modality, or ignore the temporal changes. Importantly, the clinical time series is asynchronous in practice, i.e., recorded with irregular intervals. In this study, we formalize the prognosis modeling as a multi-modal asynchronous time series classification task, and propose a MIA-Prognosis framework with Measurement, Intervention and Assessment (MIA) information to predict therapy response, where a Simple Temporal Attention (SimTA) module is developed to process the asynchronous time series. Experiments on synthetic dataset validate the superiory of SimTA over standard RNN-based approaches. Furthermore, we experiment the proposed method on an in-house, retrospective dataset of real-world non-small cell lung cancer patients under anti-PD-1 immunotherapy. The proposed method achieves promising performance on predicting the immunotherapy response. Notably, our predictive model could further stratify low-risk and high-risk patients in terms of long-term survival.
 
 ![SimTA Illustration](etc/simta_illustration.png)
 
-For more details, please refer to our paper: [MIA-Prognosis: A Deep Learning Framework to Predict Therapy Response](https://arxiv.org/pdf/2010.04062.pdf).
+For more details, please refer to our paper: 
+
+MIA-Prognosis: A Deep Learning Framework to Predict Therapy Response
+
+[DOI](http://doi.org/10.1007/978-3-030-59713-9_21) | [arXiv](https://arxiv.org/abs/2010.04062)
 
 ## Code Structure
 * SimTA/
