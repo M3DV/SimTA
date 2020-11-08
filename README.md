@@ -13,7 +13,7 @@ For more details, please refer to our paper:
 
 *[Jiancheng Yang](http://jiancheng-yang.com/), Jiajun Chen, [Kaiming Kuang](http://kaimingkuang.github.io/), Tiancheng Lin, [Junjun He](https://scholar.google.com/citations?user=Z4LgebkAAAAJ), [Bingbing Ni](https://scholar.google.com/citations?user=eUbmKwYAAAAJ)*
 
-[DOI](http://doi.org/10.1007/978-3-030-59713-9_21) | [arXiv](https://arxiv.org/abs/2010.04062)
+MICCAI'20 ([DOI](http://doi.org/10.1007/978-3-030-59713-9_21) | [arXiv](https://arxiv.org/abs/2010.04062))
 
 ## Code Structure
 * SimTA/
