@@ -9,7 +9,9 @@ Predicting clinical outcome is remarkably important but challenging. Research ef
 
 For more details, please refer to our paper: 
 
-MIA-Prognosis: A Deep Learning Framework to Predict Therapy Response
+**MIA-Prognosis: A Deep Learning Framework to Predict Therapy Response**
+
+*[Jiancheng Yang](http://jiancheng-yang.com/), Jiajun Chen, [Kaiming Kuang](http://kaimingkuang.github.io/), Tiancheng Lin, [Junjun He](https://scholar.google.com/citations?user=Z4LgebkAAAAJ), [Bingbing Ni](https://scholar.google.com/citations?user=eUbmKwYAAAAJ)*
 
 [DOI](http://doi.org/10.1007/978-3-030-59713-9_21) | [arXiv](https://arxiv.org/abs/2010.04062)
 
